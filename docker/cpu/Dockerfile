@@ -33,7 +33,7 @@ ENV CLONE_TAG=1.0
 
 RUN git clone -b ${CLONE_TAG} --depth 1 https://ghproxy.com/https://github.com/BVLC/caffe.git . && \
     pip install --upgrade pip && \
-    cd python && for req in $(cat requirements.txt) pydot; do pip install $req; done && cd .. && \
+    cd python && pip install --upgrade pip && for req in $(cat requirements.txt) pydot; do pip install $req; done && cd .. && \
     mkdir build && cd build && \
     cmake -DCPU_ONLY=1 .. && \
     make -j"$(nproc)"
